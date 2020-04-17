@@ -54,6 +54,7 @@ public class App {
 
         minus[0] = new JButton("-");
         minus[0].setBounds(31, 257, 55, 25);
+        minus[0].setEnabled(false);
         frame.getContentPane().add(minus[0]);
 
         plus[0] = new JButton("+");
@@ -84,6 +85,7 @@ public class App {
 
         minus[1] = new JButton("-");
         minus[1].setBounds(182, 256, 55, 25);
+        minus[1].setEnabled(false);
         frame.getContentPane().add(minus[1]);
 
         plus[1] = new JButton("+");
@@ -114,6 +116,7 @@ public class App {
 
         minus[2] = new JButton("-");
         minus[2].setBounds(333, 256, 55, 25);
+        minus[2].setEnabled(false);
         frame.getContentPane().add(minus[2]);
 
         plus[2] = new JButton("+");
@@ -168,7 +171,10 @@ public class App {
             plus[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    cnt[j] = cnt[j] + 1;
+                    if(cnt[j] == 0) {
+                        minus[j].setEnabled(true);
+                    }
+                    cnt[j] =cnt[j] + 1;
                     cnt_in[j].setText(cnt[j] + "");
                     total_price += price[j];
                     total_out.setText(total_price + "");
@@ -188,8 +194,8 @@ public class App {
                 }
                 // 여기부터 그리디 알고리즘
                 else {
-                    int coin[] = {5000, 1000, 500, 100, 50, 10, 1};
-                    int coin_cnt[] = {0, 0, 0, 0, 0, 0, 0};
+                    int coin[] = {10000, 5000, 1000, 500, 100, 50, 10, 1};
+                    int coin_cnt[] = {0, 0, 0, 0, 0, 0, 0, 0};
                     int change = Integer.parseInt(money_in.getText()) - total_price;
 
                     for(int i = 0 ; i < coin.length ; i++){
@@ -199,9 +205,9 @@ public class App {
 
                     JOptionPane result = new JOptionPane();
                     result.showMessageDialog(null, "거스름돈은 " + (Integer.parseInt(money_in.getText()) - total_price) + "원 입니다.\n" +
-                            "5000원권 : " + coin_cnt[0] + "장\n" + "1000원권 : " + coin_cnt[1] + "장\n" +
-                            "500원 : " + coin_cnt[2] + "개\n" + "100원 : " + coin_cnt[3] + "개\n" + "50원 : " + coin_cnt[4] + "개\n"
-                                    + "10원 : " + coin_cnt[5] + "개\n" + "1원 : " + coin_cnt[6] + "개\n"
+                            "10000원권 : " + coin_cnt[0] + "장\n" + "5000원권 : " + coin_cnt[1] + "장\n" + "1000원권 : " + coin_cnt[2] + "장\n" +
+                            "500원 : " + coin_cnt[3] + "개\n" + "100원 : " + coin_cnt[4] + "개\n" + "50원 : " + coin_cnt[5] + "개\n"
+                                    + "10원 : " + coin_cnt[6] + "개\n" + "1원 : " + coin_cnt[7] + "개\n"
                             , "거스름돈 반환", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
