@@ -157,12 +157,13 @@ public class App {
             minus[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    if (cnt[j] > 0) {
+                    if (cnt[j] > 1) {
                         cnt[j] = cnt[j] - 1;
                         cnt_in[j].setText(cnt[j] + "");
                         total_price -= price[j];
                         total_out.setText(total_price + "");
-                    } else {
+                    } 
+                    else {
                         minus[j].setEnabled(false);
                     }
                 }
